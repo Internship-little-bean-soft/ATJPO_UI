@@ -1,20 +1,81 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { MaterialCommunityIcons, MaterialIcons, Octicons, Entypo } from '@expo/vector-icons';
+import Test from './pages/Test';
+import CreateMeeting from './pages/CreateMeeting';
+import Project from './pages/Project';
+import Search from './pages/Search';
 
-export default function App() {
+function Meeting() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Search/>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+function FProject() {
+  return (
+    <Project/>
+  );
+}
+
+function Profile() {
+  return (
+    <Test/>
+  );
+}
+
+const Tab = createBottomTabNavigator();
+
+function MyTabs() {
+  return (
+    <Tab.Navigator
+      initialRouteName="Meeting"
+      screenOptions={{
+        tabBarActiveTintColor: '#1e32e9',
+      }}
+    >
+      <Tab.Screen
+        name="Meeting"
+        component={Meeting}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'การประชุม',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialIcons name="meeting-room" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Project"
+        component={FProject}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'โครงการ',
+          tabBarIcon: ({ color, size }) => (
+            <Octicons name="project" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          tabBarLabel: 'โปรไฟล์',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="account-circle-outline" color={color} size={size} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <MyTabs />
+    </NavigationContainer>
+  );
+}
