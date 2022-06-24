@@ -2,9 +2,9 @@ import React from "react";
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, TextInput, ScrollView } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Meeting from "./Meeting";
+import Project from "./Project";
 
-function CreateMeetingScreen({ navigation }) {
+function CreateProjectScreen({ navigation }) {
   const [text, onChangeText] = React.useState("Input-Text1");
   const [text2, onChangeText2] = React.useState("Input-Text2");
 
@@ -72,7 +72,7 @@ function CreateMeetingScreen({ navigation }) {
 
 function Back() {
   return (
-    <Meeting/>
+    <Project/>
   )
 }
 
@@ -81,13 +81,13 @@ const Stack = createStackNavigator();
 function MyStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={CreateMeetingScreen} options={{ headerShown: false}}/>
+      <Stack.Screen name="Home" component={CreateProjectScreen} options={{ headerShown: false}}/>
       <Stack.Screen name="ย้อนกลับ" component={Back} options={{ headerShown: false}}/>
     </Stack.Navigator>
   );
 }
 
-export default function Createmeeting() {
+export default function CreateProject() {
   return (
     <MyStack />
   )

@@ -4,7 +4,7 @@ import { Searchbar } from "react-native-paper";
 import { createStackNavigator } from '@react-navigation/stack';
 import CreateMeeting from './CreateMeeting';
 
-function HomeScreen({ navigation }) {
+function MeetingScreen({ navigation }) {
 
   const [searchQuery, setSearchQuery] = React.useState("");
   const onChangeSearch = (query) => setSearchQuery(query);
@@ -38,13 +38,13 @@ const Stack = createStackNavigator();
 function MyStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false}}/>
+      <Stack.Screen name="Home" component={MeetingScreen} options={{ headerShown: false}}/>
       <Stack.Screen name="สร้างการประชุม" component={FCreatemeeting} options={{ headerShown: false}}/>
     </Stack.Navigator>
   );
 }
 
-export default function Search() {
+export default function Meeting() {
   return (
       <MyStack />
   );

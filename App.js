@@ -4,13 +4,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons, MaterialIcons, Octicons, Entypo } from '@expo/vector-icons';
 import Test from './pages/Test';
-import CreateMeeting from './pages/CreateMeeting';
 import Project from './pages/Project';
-import Search from './pages/Search';
+import Meeting from './pages/Meeting';
 
-function Meeting() {
+function FMeeting() {
   return (
-    <Search/>
+    <Meeting/>
   );
 }
 
@@ -38,7 +37,7 @@ function MyTabs() {
     >
       <Tab.Screen
         name="Meeting"
-        component={Meeting}
+        component={FMeeting}
         options={{
           headerShown: false,
           tabBarLabel: 'การประชุม',

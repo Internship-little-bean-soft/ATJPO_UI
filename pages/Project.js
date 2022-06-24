@@ -2,9 +2,9 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { createStackNavigator } from '@react-navigation/stack';
-import CreateMeeting from './CreateMeeting';
+import CreateProject from './CreateProject';
 
-function HomeScreen({ navigation }) {
+function ProjectScreen({ navigation }) {
 
   const [searchQuery, setSearchQuery] = React.useState("");
   const onChangeSearch = (query) => setSearchQuery(query);
@@ -24,9 +24,9 @@ function HomeScreen({ navigation }) {
   );
 }
 
-function FCreatemeeting() {
+function FCreateProject() {
   return (
-    <CreateMeeting/>
+    <CreateProject/>
   )
 }
 
@@ -35,8 +35,8 @@ const Stack = createStackNavigator();
 function MyStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false}}/>
-      <Stack.Screen name="สร้างโครงการ" component={FCreatemeeting} options={{ headerShown: false}}/>
+      <Stack.Screen name="Home" component={ProjectScreen} options={{ headerShown: false}}/>
+      <Stack.Screen name="สร้างโครงการ" component={FCreateProject} options={{ headerShown: false }}/>
     </Stack.Navigator>
   );
 }
