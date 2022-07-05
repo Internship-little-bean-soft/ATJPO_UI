@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useRef } from "react";
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, TextInput, ScrollView } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Meeting from "./Meeting";
+import ActionSheet from "react-native-actionsheet";
 
 function CreateMeetingScreen({ navigation }) {
   const [text, onChangeText] = React.useState("Input-Text1");
   const [text2, onChangeText2] = React.useState("Input-Text2");
+  
+  let actionSheet = useRef();
+  let optionArray = [
+    'Option1', 'Option2', 'Option3', 'Option4', 'Cancel'
+  ];
+
+  const showActionSheet = () => {
+    actionSheet.current.show();
+  }
 
   return (
     <ScrollView style={styles.container}>
@@ -60,11 +70,42 @@ function CreateMeetingScreen({ navigation }) {
       </View>
       <View style= { styles.center }>
         <TouchableOpacity
-            onPress={() => alert('Hello, world!')}
+            onPress={showActionSheet}
             style={ styles.button3 }>
             <Text style={ styles.buttontext3 }>บันทึก</Text>
         </TouchableOpacity>
       </View>
+      <ActionSheet
+        ref={actionSheet}
+        title={' test '}
+        options={optionArray}
+        cancelButtonIndex={4}
+        destructiveButtonIndex={4}
+        useRef= {true}
+        onPress={(index) => {
+          if (index == 0)
+          {
+            alert("Test1");
+          }
+          if (index == 1)
+          {
+            alert("Test2");
+          }
+          if (index == 2)
+          {
+            alert("Test3");
+          }
+          if (index == 3)
+          {
+            alert("Test4");
+          }
+          if (index == 4)
+          {
+            
+          }
+        }
+        }
+      />
       <StatusBar style="auto" />
     </ScrollView>
   );
