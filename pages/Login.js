@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Input, NativeBaseProvider, Button, Icon, Box, Image, AspectRatio } from 'native-base';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -8,6 +8,8 @@ import { useNavigation } from '@react-navigation/native';
 import { alignContent, flex, flexDirection, width } from 'styled-system';
 
 function Login() {
+    const [email, setEmail] = useState("Input-Text1");
+    const [password, setPassword] = useState("Input-Text2");
     const navigation = useNavigation();
     return (
         <View style={styles.container}>
@@ -39,13 +41,14 @@ function Login() {
                         }
                         variant="outline"
                         placeholder="Username or Email"
+                        value={email}
+                        setEmail = {setEmail}
                         _light={{
                             placeholderTextColor: "blueGray.400",
                         }}
                         _dark={{
                             placeholderTextColor: "blueGray.50",
                         }}
-
                     />
                 </View>
             </View>
@@ -71,6 +74,8 @@ function Login() {
                         variant="outline"
                         secureTextEntry={true}
                         placeholder="Password"
+                        value={password}
+                        setPassword = {setPassword}
                         _light={{
                             placeholderTextColor: "blueGray.400",
                         }}
@@ -96,9 +101,7 @@ function Login() {
 export default () => {
     return (
         <NativeBaseProvider>
-
             <Login />
-
         </NativeBaseProvider>
     )
 }
