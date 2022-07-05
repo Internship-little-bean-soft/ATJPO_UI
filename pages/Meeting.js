@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { createStackNavigator } from '@react-navigation/stack';
 import CreateMeeting from './CreateMeeting';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function MeetingScreen({ navigation }) {
 
@@ -45,6 +46,10 @@ function MyStack() {
 }
 
 export default function Meeting() {
+  let token = AsyncStorage.getItem("token");
+  if (token) {
+    console.log("Token is: ", token)
+  }
   return (
       <MyStack />
   );

@@ -70,7 +70,7 @@ function MyTabs() {
   );
 }
 
-export default function fTab() {
+export default function FTab() {
   return (
     <MyTabs />
   );

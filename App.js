@@ -6,7 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 // import { AppRegistry } from 'react-native';
 import { client } from './graphql/apolloConfig';
 import { ApolloProvider } from '@apollo/client';
-import fTab from './pages/Tab';
+import FTab from './pages/Tab';
 
 const Stack = createStackNavigator();
 
@@ -19,7 +19,7 @@ function App() {
         <Stack.Navigator screenOptions={{headerShown: false}} >
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Signup" component={Signup} />
-          <Stack.Screen name="Tab" component={fTab} />
+          <Stack.Screen name="Tab" component={FTab} />
         </Stack.Navigator>
       </ApolloProvider>
     );
