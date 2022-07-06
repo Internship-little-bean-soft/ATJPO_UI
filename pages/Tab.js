@@ -2,27 +2,9 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons, MaterialIcons, Octicons, Entypo } from '@expo/vector-icons';
-import Test from './Test';
 import Project from './Project';
 import Meeting from './Meeting';
-
-function FMeeting() {
-  return (
-    <Meeting/>
-  );
-}
-
-function FProject() {
-  return (
-    <Project/>
-  );
-}
-
-function Profile() {
-  return (
-    <Test/>
-  );
-}
+import Profile from './Profile';
 
 const Tab = createBottomTabNavigator();
 
@@ -36,7 +18,7 @@ function MyTabs() {
     >
       <Tab.Screen
         name="Meeting"
-        component={FMeeting}
+        component={Meeting}
         options={{
           headerShown: false,
           tabBarLabel: 'การประชุม',
@@ -47,7 +29,7 @@ function MyTabs() {
       />
       <Tab.Screen
         name="Project"
-        component={FProject}
+        component={Project}
         options={{
           headerShown: false,
           tabBarLabel: 'โครงการ',
