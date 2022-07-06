@@ -8,6 +8,7 @@ import { ApolloProvider } from '@apollo/client';
 import FTab from './pages/Tab';
 import Meeting from './pages/Meeting';
 import Createmeeting from './pages/CreateMeeting';
+import CreateProject from './pages/CreateProject';
 
 const Stack = createStackNavigator();
 export const MyStack = () => {
@@ -19,6 +20,7 @@ export const MyStack = () => {
         <Stack.Screen name="Tab" component={FTab} />
         <Stack.Screen name="Home" component={Meeting} />
         <Stack.Screen name="CreateMeeting" component={Createmeeting} />
+        <Stack.Screen name="CreateProject" component={CreateProject} />
       </Stack.Navigator>
     </ApolloProvider>
   )
