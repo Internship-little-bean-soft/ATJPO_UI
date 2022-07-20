@@ -1,10 +1,15 @@
-import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { MaterialCommunityIcons, MaterialIcons, Octicons, Entypo } from '@expo/vector-icons';
-import Project from './Project';
-import Meeting from './Meeting';
-import Profile from './Profile';
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import {
+  MaterialCommunityIcons,
+  MaterialIcons,
+  Octicons,
+  Entypo,
+} from "@expo/vector-icons";
+import Project from "./Project";
+import Meeting from "./Meeting";
+import Profile from "./Profile";
 
 const Tab = createBottomTabNavigator();
 
@@ -13,7 +18,7 @@ function MyTabs() {
     <Tab.Navigator
       initialRouteName="Meeting"
       screenOptions={{
-        tabBarActiveTintColor: '#1e32e9',
+        tabBarActiveTintColor: "#1e32e9",
       }}
     >
       <Tab.Screen
@@ -21,7 +26,7 @@ function MyTabs() {
         component={Meeting}
         options={{
           headerShown: false,
-          tabBarLabel: 'การประชุม',
+          tabBarLabel: "การประชุม",
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="meeting-room" color={color} size={size} />
           ),
@@ -32,7 +37,7 @@ function MyTabs() {
         component={Project}
         options={{
           headerShown: false,
-          tabBarLabel: 'โครงการ',
+          tabBarLabel: "โครงการ",
           tabBarIcon: ({ color, size }) => (
             <Octicons name="project" color={color} size={size} />
           ),
@@ -42,9 +47,13 @@ function MyTabs() {
         name="Profile"
         component={Profile}
         options={{
-          tabBarLabel: 'โปรไฟล์',
+          tabBarLabel: "โปรไฟล์",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="account-circle-outline" color={color} size={size} />
+            <MaterialCommunityIcons
+              name="account-circle-outline"
+              color={color}
+              size={size}
+            />
           ),
         }}
       />
@@ -53,7 +62,5 @@ function MyTabs() {
 }
 
 export default function FTab() {
-  return (
-    <MyTabs />
-  );
+  return <MyTabs />;
 }
