@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import { Searchbar } from "react-native-paper";
-import { styles } from './Style';
-import { useNavigation } from '@react-navigation/native';
+import { styles } from "./Style";
+import { useNavigation } from "@react-navigation/native";
 
 export function ProjectScreen() {
   const navigation = useNavigation();
@@ -13,10 +13,16 @@ export function ProjectScreen() {
     <View style={styles.container}>
       <View style={styles.searchandbutton}>
         <View style={styles.searchbar}>
-          <Searchbar placeholder="Search" onChangeText={onChangeSearch} value={searchQuery}/>
+          <Searchbar
+            placeholder="Search"
+            onChangeText={onChangeSearch}
+            value={searchQuery}
+          />
         </View>
         <View style={styles.button}>
-          <TouchableOpacity onPress={() => navigation.navigate("CreateProject")}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("CreateProject")}
+          >
             <Text style={{ color: "#FFF" }}>สร้างใหม่</Text>
           </TouchableOpacity>
         </View>
@@ -24,4 +30,3 @@ export function ProjectScreen() {
     </View>
   );
 }
-
