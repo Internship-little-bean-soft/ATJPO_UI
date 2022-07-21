@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   Text,
@@ -11,17 +11,58 @@ import {
 import ActionSheet from "react-native-actionsheet";
 import { styles } from "./Style";
 import { useNavigation } from "@react-navigation/native";
+import { useMutation } from "@apollo/client";
+import { CREATE_MEETING } from "../../graphql/mutation/CreateMeeting";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export function CreateMeetingScreen() {
   const navigation = useNavigation();
-  const [text, onChangeText] = React.useState("Input-Text1");
-  const [text2, onChangeText2] = React.useState("Input-Text2");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [detail] = useState("test");
+  const [tag] = useState("test");
 
   let actionSheet = useRef();
   let optionArray = ["Option1", "Option2", "Option3", "Option4", "Cancel"];
 
   const showActionSheet = () => {
     actionSheet.current.show();
+  };
+
+  const [createMeeting, { data, loading, error }] = useMutation(CREATE_MEETING, {
+    onCompleted(data) {
+      if (loading) console.log("Loading.....");
+      console.log(data);
+      if (data) {
+        try {
+          AsyncStorage.setItem("token", data.createMeeting.token).then(() => {
+          console.log(data);
+          });
+        } catch (e) {
+          console.log(data);
+          console.log(e);
+        }
+      }
+    },
+  });
+
+  const createMeetingHandler = () => {
+    const token = AsyncStorage.getItem("token");
+    console.log(token);
+
+    createMeeting({
+      headers: {
+        authorization: token ? `Bearer ${token}` : "",
+      },
+      variables: {
+        meetingInput: {
+          title: title,
+          description: description,
+          detail: detail,
+          tag: tag,
+        },
+      },
+    });
   };
 
   return (
@@ -40,8 +81,8 @@ export function CreateMeetingScreen() {
         <SafeAreaView style={styles.containerSafeArea}>
           <TextInput
             style={styles.input}
-            onChangeText={onChangeText}
-            value={text}
+            onChangeText={setTitle}
+            value={title}
             placeholder="ชื่อการประชุม"
           />
         </SafeAreaView>
@@ -51,8 +92,8 @@ export function CreateMeetingScreen() {
         <SafeAreaView style={styles.containerSafeArea}>
           <TextInput
             style={styles.input}
-            onChangeText={onChangeText2}
-            value={text2}
+            onChangeText={setDescription}
+            value={description}
             multiline
             numberOfLines={10}
             placeholder="รายละเอียดการประชุม"
@@ -71,14 +112,14 @@ export function CreateMeetingScreen() {
       <Text style={styles.text2}>แท็ก</Text>
       <View style={styles.center}>
         <TouchableOpacity
-          onPress={() => alert("Hello, world!")}
+          onPress={showActionSheet}
           style={styles.button2}
         >
           <Text style={styles.buttontext2}>เพิ่มแท็ก</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.center}>
-        <TouchableOpacity onPress={showActionSheet} style={styles.button3}>
+        <TouchableOpacity onPress={createMeetingHandler} style={styles.button3}>
           <Text style={styles.buttontext3}>บันทึก</Text>
         </TouchableOpacity>
       </View>
