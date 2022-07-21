@@ -29,26 +29,29 @@ export function CreateMeetingScreen() {
     actionSheet.current.show();
   };
 
-  const [createMeeting, { data, loading, error }] = useMutation(CREATE_MEETING, {
-    onCompleted(data) {
-      if (loading) console.log("Loading.....");
-      console.log(data);
-      if (data) {
-        try {
-          AsyncStorage.setItem("token", data.createMeeting.token).then(() => {
-          console.log(data);
-          });
-        } catch (e) {
-          console.log(data);
-          console.log(e);
+  const [createMeeting, { data, loading, error }] = useMutation(
+    CREATE_MEETING,
+    {
+      onCompleted(data) {
+        if (loading) console.log("Loading.....");
+        console.log(data);
+        if (data) {
+          try {
+            console.log(data);
+          } catch (e) {
+            console.log(data);
+            console.log(e);
+          }
         }
-      }
-    },
-  });
+      },
+      onError(error) {
+        console.log(error.networkError.result);
+      },
+    }
+  );
 
-  const createMeetingHandler = () => {
-    const token = AsyncStorage.getItem("token");
-    console.log(token);
+  const createMeetingHandler = async () => {
+    const token = await AsyncStorage.getItem("token");
 
     createMeeting({
       headers: {
@@ -111,10 +114,7 @@ export function CreateMeetingScreen() {
       </View>
       <Text style={styles.text2}>แท็ก</Text>
       <View style={styles.center}>
-        <TouchableOpacity
-          onPress={showActionSheet}
-          style={styles.button2}
-        >
+        <TouchableOpacity onPress={showActionSheet} style={styles.button2}>
           <Text style={styles.buttontext2}>เพิ่มแท็ก</Text>
         </TouchableOpacity>
       </View>
