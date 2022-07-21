@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const CREATE_MEETING = gql`
   mutation CreateMeeting($meetingInput: MeetingInput) {
@@ -9,7 +9,7 @@ export const CREATE_MEETING = gql`
       detail
       tag
       createdAt
-      createBy
+      createdBy
     }
   }
 `;
